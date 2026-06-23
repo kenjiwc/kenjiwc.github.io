@@ -1,23 +1,540 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>kenjiwc dude</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-        </nav>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Alex's Profile - MySpace</title>
+<style>
+  :root{
+    --ms-blue: #003399;
+    --ms-blue-light: #6699CC;
+    --ms-blue-pale: #E6EDF7;
+    --ms-bg: #FFFFFF;
+    --ms-panel: #EFEFEF;
+    --ms-text: #000000;
+    --ms-link: #0000CC;
+    --ms-visited: #990000;
+    --ms-border: #6E96C6;
+  }
 
-        <h1>Welcome to my website</h1>
-        <p>I am pibble. mulch mulch mulch.</p>
-        <p>
-            Here is some <span class="tooltip">hover text<span class="tooltiptext">This is the extra information shown when the mouse is over the text.</span></span>.
-        </p>
-    </body>
+  * { box-sizing: border-box; }
+
+  body{
+    margin:0;
+    padding:0;
+    background:#a9c4e0;
+    background-image:
+      linear-gradient(180deg, #c9dcf0 0%, #a9c4e0 120px, #a9c4e0 100%);
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:11px;
+    color: var(--ms-text);
+  }
+
+  a { color: var(--ms-link); text-decoration: underline; }
+  a:visited { color: var(--ms-visited); }
+  a:hover { color: #CC3300; }
+
+  .page{
+    max-width: 950px;
+    margin: 0 auto;
+    background: var(--ms-bg);
+    border-left: 1px solid #336699;
+    border-right: 1px solid #336699;
+  }
+
+  /* TOP BANNER */
+  .topbar{
+    background: var(--ms-blue);
+    color: #fff;
+    font-size:10px;
+    padding: 3px 8px;
+    display:flex;
+    justify-content: space-between;
+    font-family: Arial, sans-serif;
+  }
+  .topbar a { color: #cfe0ff; text-decoration:none; margin-left:8px;}
+  .topbar a:hover{ text-decoration:underline; }
+
+  .sitehead{
+    background: linear-gradient(180deg, #1a4caf, #002a80);
+    padding: 6px 10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom: 3px solid #001f5c;
+  }
+  .sitehead .logo{
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-weight:bold;
+    font-size:26px;
+    color:#fff;
+    letter-spacing:-1px;
+    text-shadow: 1px 1px 0 #001f5c;
+  }
+  .sitehead .logo span{ color:#FFD400; }
+  .navlinks{ font-size:11px; }
+  .navlinks a{ color:#fff; margin-left:12px; font-weight:bold; text-decoration:none;}
+  .navlinks a:hover{ text-decoration:underline; color:#FFD400; }
+
+  /* PROFILE HEADER STRIP */
+  .profile-strip{
+    background: var(--ms-blue-pale);
+    border-bottom:1px solid var(--ms-border);
+    padding:8px 12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+  }
+  .profile-strip h1{
+    font-family:"Trebuchet MS", Verdana, sans-serif;
+    font-size:20px;
+    color: var(--ms-blue);
+    margin:0;
+  }
+  .profile-strip .tagline{
+    font-size:11px;
+    font-style:italic;
+    color:#444;
+  }
+  .url-line{
+    font-size:10px;
+    color:#555;
+    padding: 2px 12px 8px;
+  }
+
+  /* MAIN GRID */
+  .main{
+    display:grid;
+    grid-template-columns: 220px 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  /* PANEL / BOX STYLE - the classic bordered table look */
+  .box{
+    border: 1px solid var(--ms-border);
+    margin-bottom: 10px;
+    background: var(--ms-bg);
+  }
+  .box-title{
+    background: linear-gradient(180deg, var(--ms-blue-light), #4477AA);
+    color:#fff;
+    font-weight:bold;
+    font-size:11px;
+    padding:3px 6px;
+    border-bottom:1px solid #335a88;
+  }
+  .box-body{
+    padding:8px;
+    background: var(--ms-panel);
+  }
+  .box-body.white{ background:#fff; }
+
+  /* LEFT COLUMN */
+  .left .photo-frame{
+    border:1px solid var(--ms-border);
+    padding:4px;
+    background:#fff;
+    text-align:center;
+    margin-bottom:10px;
+  }
+  .left .photo-frame img{
+    width:100%;
+    display:block;
+    border:1px solid #999;
+  }
+  .left .photo-caption{
+    font-size:10px;
+    color:#555;
+    margin-top:4px;
+  }
+
+  .status-line{
+    font-size:11px;
+    margin-bottom:8px;
+    text-align:center;
+  }
+  .status-line .online-dot{
+    display:inline-block;
+    width:8px;height:8px;
+    background:#33cc33;
+    border-radius:50%;
+    margin-right:4px;
+  }
+
+  table.infotable{
+    width:100%;
+    border-collapse:collapse;
+    font-size:11px;
+  }
+  table.infotable td{
+    padding:2px 4px;
+    vertical-align:top;
+  }
+  table.infotable td.k{
+    color:#336699;
+    font-weight:bold;
+    width:65px;
+    white-space:nowrap;
+  }
+
+  .contact-icons{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    padding:6px 0 0;
+  }
+  .contact-icons a{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:50px;
+    font-size:9px;
+    text-decoration:none;
+    color:#333;
+  }
+  .contact-icons .icon{
+    width:28px;height:28px;
+    background:var(--ms-blue-light);
+    border:1px solid var(--ms-border);
+    border-radius:3px;
+    margin-bottom:2px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-weight:bold;
+    font-size:13px;
+  }
+
+  /* RIGHT COLUMN */
+  .right .box-body p{
+    margin:0 0 8px;
+    line-height:1.5;
+  }
+  .right .box-body p:last-child{ margin-bottom:0; }
+
+  .mood{
+    font-style:italic;
+    color:#444;
+    font-size:11px;
+    margin-top:4px;
+  }
+
+  /* TOP 8 GRID */
+  .top8-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:8px;
+  }
+  .top8-friend{
+    text-align:center;
+    font-size:10px;
+  }
+  .top8-friend .avatar{
+    width:100%;
+    aspect-ratio:1/1;
+    border:1px solid var(--ms-border);
+    background: linear-gradient(135deg,#cfe0f5,#9fc0e6);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#2d4f7c;
+    font-weight:bold;
+    font-size:20px;
+    margin-bottom:3px;
+  }
+  .top8-friend a{ text-decoration:none; font-weight:bold; }
+
+  /* INTERESTS TABLE */
+  table.interests{
+    width:100%;
+    border-collapse:collapse;
+    font-size:11px;
+  }
+  table.interests td{
+    padding:4px 6px;
+    border-bottom:1px dotted #bbb;
+    vertical-align:top;
+  }
+  table.interests td.k{
+    width:90px;
+    font-weight:bold;
+    color:#336699;
+  }
+
+  /* COMMENTS */
+  .comment{
+    display:flex;
+    gap:8px;
+    border-bottom:1px dashed #bbb;
+    padding:8px 0;
+  }
+  .comment:last-child{ border-bottom:none; }
+  .comment .cthumb{
+    width:60px;height:60px;
+    flex-shrink:0;
+    background: linear-gradient(135deg,#dde7f3,#aac4e0);
+    border:1px solid var(--ms-border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    color:#2d4f7c;
+  }
+  .comment .cbody{ font-size:11px; }
+  .comment .cname{
+    font-weight:bold;
+    margin-bottom:2px;
+  }
+  .comment .cdate{
+    color:#888;
+    font-size:9px;
+    margin-top:4px;
+  }
+  .comment-footer{
+    text-align:center;
+    padding:8px;
+    background:#fff;
+  }
+  .fakebtn{
+    display:inline-block;
+    background: linear-gradient(180deg,#f5f5f5,#dcdcdc);
+    border:1px solid #999;
+    border-radius:3px;
+    padding:4px 14px;
+    font-size:11px;
+    font-weight:bold;
+    color:#333;
+    cursor:default;
+  }
+
+  .blink{ animation: blinker 1.4s step-start infinite; }
+  @keyframes blinker{ 50%{ opacity:0; } }
+
+  .footer{
+    background:var(--ms-blue);
+    color:#cfe0ff;
+    text-align:center;
+    font-size:10px;
+    padding:8px;
+  }
+  .footer a{ color:#fff; }
+
+  @media (max-width: 640px){
+    .main{ grid-template-columns: 1fr; }
+    .top8-grid{ grid-template-columns: repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- top utility bar -->
+  <div class="topbar">
+    <span>Logged in as <strong>alex_makes_things</strong></span>
+    <span>
+      <a href="#">Home</a><a href="#">Mail (3)</a><a href="#">Settings</a><a href="#">Logout</a>
+    </span>
+  </div>
+
+  <!-- site header -->
+  <div class="sitehead">
+    <div class="logo">my<span>profile</span>.</div>
+    <div class="navlinks">
+      <a href="#">Browse</a><a href="#">Search</a><a href="#">Blog</a><a href="#">Music</a><a href="#">Friends</a>
+    </div>
+  </div>
+
+  <!-- profile name strip -->
+  <div class="profile-strip">
+    <h1>Alex Rivera</h1>
+    <span class="tagline">"still figuring it out, one playlist at a time"</span>
+  </div>
+  <div class="url-line">myprofile.com/alexrivera &nbsp;|&nbsp; Last login: Today &nbsp;|&nbsp; <span class="blink">★ Currently online ★</span></div>
+
+  <!-- main two column layout -->
+  <div class="main">
+
+    <!-- LEFT COLUMN -->
+    <div class="left">
+
+      <div class="photo-frame">
+        <img src="https://placehold.co/200x220/9fc0e6/2d4f7c?text=Profile+Photo" alt="Profile photo placeholder">
+        <div class="photo-caption">view my photos (24)</div>
+      </div>
+
+      <div class="status-line">
+        <span class="online-dot"></span><strong>Alex Rivera</strong><br>
+        24 / San Diego, CA
+      </div>
+
+      <div class="box">
+        <div class="box-title">Contacting Alex</div>
+        <div class="box-body white">
+          <div class="contact-icons">
+            <a href="#"><span class="icon">✉</span>Message</a>
+            <a href="#"><span class="icon">★</span>Add to Friends</a>
+            <a href="#"><span class="icon">!</span>Block</a>
+            <a href="#"><span class="icon">♥</span>Fan</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">Alex's Details</div>
+        <div class="box-body white">
+          <table class="infotable">
+            <tr><td class="k">Status:</td><td>Single</td></tr>
+            <tr><td class="k">Here for:</td><td>Friends, Networking</td></tr>
+            <tr><td class="k">Hometown:</td><td>San Diego, CA</td></tr>
+            <tr><td class="k">Zodiac:</td><td>Gemini</td></tr>
+            <tr><td class="k">Occupation:</td><td>Designer / coffee enthusiast</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">Last Login</div>
+        <div class="box-body white">
+          <table class="infotable">
+            <tr><td class="k">Today</td><td>2:14 PM</td></tr>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="right">
+
+      <div class="box">
+        <div class="box-title">Alex's Blurbs</div>
+        <div class="box-body">
+          <strong>About me:</strong>
+          <p>
+            Hey! I'm Alex — I make websites, take too many photos of my dog, and
+            have strong opinions about which decade had the best music (it's the 90s,
+            don't @ me). This page is a little throwback to the internet I grew up on.
+            Add me if you're cool. Don't add me if you're not. (Kidding. Mostly.)
+          </p>
+          <div class="mood">Current mood: <strong>nostalgic</strong></div>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">Who I'd Like to Meet</div>
+        <div class="box-body">
+          <p>
+            People who still remember dial-up sounds, anyone with a good
+            recommendation for a taco shop, and whoever invented the snooze button
+            (I have notes).
+          </p>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">★ Alex's Top 8 Friends ★</div>
+        <div class="box-body white">
+          <div class="top8-grid">
+            <div class="top8-friend">
+              <div class="avatar">JM</div>
+              <a href="#">Jamie</a>
+            </div>
+            <div class="top8-friend">
+              <div class="avatar">SK</div>
+              <a href="#">Sam K.</a>
+            </div>
+            <div class="top8-friend">
+              <div class="avatar">TR</div>
+              <a href="#">Taylor</a>
+            </div>
+            <div class="top8-friend">
+              <div class="avatar">DV</div>
+              <a href="#">Dana V.</a>
+            </div>
+            <div class="top8-friend">
+              <div class="avatar">MO</div>
+              <a href="#">Morgan</a>
+            </div>
+            <div class="top8-friend">
+              <div class="avatar">CL</div>
+              <a href="#">Casey</a>
+            </div>
+            <div class="top8-friend">
+              <div class="avatar">RB</div>
+              <a href="#">Robin</a>
+            </div>
+            <div class="top8-friend">
+              <div class="avatar">EV</div>
+              <a href="#">Evan</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">General Interests</div>
+        <div class="box-body white">
+          <table class="interests">
+            <tr><td class="k">General</td><td>thrifting, film photography, terrible puns</td></tr>
+            <tr><td class="k">Music</td><td>indie rock, 2000s pop-punk, lo-fi</td></tr>
+            <tr><td class="k">Movies</td><td>anything with a twist ending</td></tr>
+            <tr><td class="k">TV</td><td>cooking competitions, old sitcoms</td></tr>
+            <tr><td class="k">Books</td><td>sci-fi, design blogs, the backs of cereal boxes</td></tr>
+            <tr><td class="k">Heroes</td><td>my mom, whoever invented iced coffee</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">Alex's Comments (12)</div>
+        <div class="box-body white">
+
+          <div class="comment">
+            <div class="cthumb">JM</div>
+            <div class="cbody">
+              <div class="cname">Jamie says:</div>
+              <div>omg I can't believe you actually built this. so good. also call me back</div>
+              <div class="cdate">posted 2 days ago</div>
+            </div>
+          </div>
+
+          <div class="comment">
+            <div class="cthumb">SK</div>
+            <div class="cbody">
+              <div class="cname">Sam K. says:</div>
+              <div>this page is sending me back to 2006 immediately. add me back!!</div>
+              <div class="cdate">posted 5 days ago</div>
+            </div>
+          </div>
+
+          <div class="comment">
+            <div class="cthumb">TR</div>
+            <div class="cbody">
+              <div class="cname">Taylor says:</div>
+              <div>thanks for the playlist rec, it's all I've listened to this week</div>
+              <div class="cdate">posted 1 week ago</div>
+            </div>
+          </div>
+
+          <div class="comment-footer">
+            <span class="fakebtn">View all comments</span>
+            &nbsp;&nbsp;
+            <span class="fakebtn">Add Comment</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    myprofile.com &copy; 2006&ndash;2026 &nbsp;|&nbsp; <a href="#">About</a> &nbsp;|&nbsp; <a href="#">Help</a> &nbsp;|&nbsp; <a href="#">Terms</a>
+  </div>
+
+</div>
+
+</body>
 </html>
