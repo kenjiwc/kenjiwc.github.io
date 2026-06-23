@@ -3,328 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Alex's Profile - MySpace</title>
-<style>
-  :root{
-    --ms-blue: #003399;
-    --ms-blue-light: #6699CC;
-    --ms-blue-pale: #E6EDF7;
-    --ms-bg: #FFFFFF;
-    --ms-panel: #EFEFEF;
-    --ms-text: #000000;
-    --ms-link: #0000CC;
-    --ms-visited: #990000;
-    --ms-border: #6E96C6;
-  }
-
-  * { box-sizing: border-box; }
-
-  body{
-    margin:0;
-    padding:0;
-    background:#a9c4e0;
-    background-image:
-      linear-gradient(180deg, #c9dcf0 0%, #a9c4e0 120px, #a9c4e0 100%);
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size:11px;
-    color: var(--ms-text);
-  }
-
-  a { color: var(--ms-link); text-decoration: underline; }
-  a:visited { color: var(--ms-visited); }
-  a:hover { color: #CC3300; }
-
-  .page{
-    max-width: 950px;
-    margin: 0 auto;
-    background: var(--ms-bg);
-    border-left: 1px solid #336699;
-    border-right: 1px solid #336699;
-  }
-
-  /* TOP BANNER */
-  .topbar{
-    background: var(--ms-blue);
-    color: #fff;
-    font-size:10px;
-    padding: 3px 8px;
-    display:flex;
-    justify-content: space-between;
-    font-family: Arial, sans-serif;
-  }
-  .topbar a { color: #cfe0ff; text-decoration:none; margin-left:8px;}
-  .topbar a:hover{ text-decoration:underline; }
-
-  .sitehead{
-    background: linear-gradient(180deg, #1a4caf, #002a80);
-    padding: 6px 10px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    border-bottom: 3px solid #001f5c;
-  }
-  .sitehead .logo{
-    font-family: "Trebuchet MS", Verdana, sans-serif;
-    font-weight:bold;
-    font-size:26px;
-    color:#fff;
-    letter-spacing:-1px;
-    text-shadow: 1px 1px 0 #001f5c;
-  }
-  .sitehead .logo span{ color:#FFD400; }
-  .navlinks{ font-size:11px; }
-  .navlinks a{ color:#fff; margin-left:12px; font-weight:bold; text-decoration:none;}
-  .navlinks a:hover{ text-decoration:underline; color:#FFD400; }
-
-  /* PROFILE HEADER STRIP */
-  .profile-strip{
-    background: var(--ms-blue-pale);
-    border-bottom:1px solid var(--ms-border);
-    padding:8px 12px;
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-  }
-  .profile-strip h1{
-    font-family:"Trebuchet MS", Verdana, sans-serif;
-    font-size:20px;
-    color: var(--ms-blue);
-    margin:0;
-  }
-  .profile-strip .tagline{
-    font-size:11px;
-    font-style:italic;
-    color:#444;
-  }
-  .url-line{
-    font-size:10px;
-    color:#555;
-    padding: 2px 12px 8px;
-  }
-
-  /* MAIN GRID */
-  .main{
-    display:grid;
-    grid-template-columns: 220px 1fr;
-    gap: 10px;
-    padding: 10px;
-  }
-
-  /* PANEL / BOX STYLE - the classic bordered table look */
-  .box{
-    border: 1px solid var(--ms-border);
-    margin-bottom: 10px;
-    background: var(--ms-bg);
-  }
-  .box-title{
-    background: linear-gradient(180deg, var(--ms-blue-light), #4477AA);
-    color:#fff;
-    font-weight:bold;
-    font-size:11px;
-    padding:3px 6px;
-    border-bottom:1px solid #335a88;
-  }
-  .box-body{
-    padding:8px;
-    background: var(--ms-panel);
-  }
-  .box-body.white{ background:#fff; }
-
-  /* LEFT COLUMN */
-  .left .photo-frame{
-    border:1px solid var(--ms-border);
-    padding:4px;
-    background:#fff;
-    text-align:center;
-    margin-bottom:10px;
-  }
-  .left .photo-frame img{
-    width:100%;
-    display:block;
-    border:1px solid #999;
-  }
-  .left .photo-caption{
-    font-size:10px;
-    color:#555;
-    margin-top:4px;
-  }
-
-  .status-line{
-    font-size:11px;
-    margin-bottom:8px;
-    text-align:center;
-  }
-  .status-line .online-dot{
-    display:inline-block;
-    width:8px;height:8px;
-    background:#33cc33;
-    border-radius:50%;
-    margin-right:4px;
-  }
-
-  table.infotable{
-    width:100%;
-    border-collapse:collapse;
-    font-size:11px;
-  }
-  table.infotable td{
-    padding:2px 4px;
-    vertical-align:top;
-  }
-  table.infotable td.k{
-    color:#336699;
-    font-weight:bold;
-    width:65px;
-    white-space:nowrap;
-  }
-
-  .contact-icons{
-    display:flex;
-    gap:6px;
-    flex-wrap:wrap;
-    padding:6px 0 0;
-  }
-  .contact-icons a{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    width:50px;
-    font-size:9px;
-    text-decoration:none;
-    color:#333;
-  }
-  .contact-icons .icon{
-    width:28px;height:28px;
-    background:var(--ms-blue-light);
-    border:1px solid var(--ms-border);
-    border-radius:3px;
-    margin-bottom:2px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#fff;
-    font-weight:bold;
-    font-size:13px;
-  }
-
-  /* RIGHT COLUMN */
-  .right .box-body p{
-    margin:0 0 8px;
-    line-height:1.5;
-  }
-  .right .box-body p:last-child{ margin-bottom:0; }
-
-  .mood{
-    font-style:italic;
-    color:#444;
-    font-size:11px;
-    margin-top:4px;
-  }
-
-  /* TOP 8 GRID */
-  .top8-grid{
-    display:grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap:8px;
-  }
-  .top8-friend{
-    text-align:center;
-    font-size:10px;
-  }
-  .top8-friend .avatar{
-    width:100%;
-    aspect-ratio:1/1;
-    border:1px solid var(--ms-border);
-    background: linear-gradient(135deg,#cfe0f5,#9fc0e6);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#2d4f7c;
-    font-weight:bold;
-    font-size:20px;
-    margin-bottom:3px;
-  }
-  .top8-friend a{ text-decoration:none; font-weight:bold; }
-
-  /* INTERESTS TABLE */
-  table.interests{
-    width:100%;
-    border-collapse:collapse;
-    font-size:11px;
-  }
-  table.interests td{
-    padding:4px 6px;
-    border-bottom:1px dotted #bbb;
-    vertical-align:top;
-  }
-  table.interests td.k{
-    width:90px;
-    font-weight:bold;
-    color:#336699;
-  }
-
-  /* COMMENTS */
-  .comment{
-    display:flex;
-    gap:8px;
-    border-bottom:1px dashed #bbb;
-    padding:8px 0;
-  }
-  .comment:last-child{ border-bottom:none; }
-  .comment .cthumb{
-    width:60px;height:60px;
-    flex-shrink:0;
-    background: linear-gradient(135deg,#dde7f3,#aac4e0);
-    border:1px solid var(--ms-border);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    color:#2d4f7c;
-  }
-  .comment .cbody{ font-size:11px; }
-  .comment .cname{
-    font-weight:bold;
-    margin-bottom:2px;
-  }
-  .comment .cdate{
-    color:#888;
-    font-size:9px;
-    margin-top:4px;
-  }
-  .comment-footer{
-    text-align:center;
-    padding:8px;
-    background:#fff;
-  }
-  .fakebtn{
-    display:inline-block;
-    background: linear-gradient(180deg,#f5f5f5,#dcdcdc);
-    border:1px solid #999;
-    border-radius:3px;
-    padding:4px 14px;
-    font-size:11px;
-    font-weight:bold;
-    color:#333;
-    cursor:default;
-  }
-
-  .blink{ animation: blinker 1.4s step-start infinite; }
-  @keyframes blinker{ 50%{ opacity:0; } }
-
-  .footer{
-    background:var(--ms-blue);
-    color:#cfe0ff;
-    text-align:center;
-    font-size:10px;
-    padding:8px;
-  }
-  .footer a{ color:#fff; }
-
-  @media (max-width: 640px){
-    .main{ grid-template-columns: 1fr; }
-    .top8-grid{ grid-template-columns: repeat(2,1fr); }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -367,6 +46,30 @@
       <div class="status-line">
         <span class="online-dot"></span><strong>Alex Rivera</strong><br>
         24 / San Diego, CA
+      </div>
+
+      <!-- MUSIC PLAYER -->
+      <div class="box player-box">
+        <div class="box-title">Alex's Music</div>
+        <div class="box-body">
+          <div class="player">
+            <div class="player-track" id="player-track-label">Now playing: <strong>—</strong></div>
+            <div class="player-controls">
+              <button class="player-btn" id="player-prev" title="Previous track" aria-label="Previous track">◀◀</button>
+              <button class="player-btn" id="player-play" title="Play/Pause" aria-label="Play or pause">▶</button>
+              <button class="player-btn" id="player-next" title="Next track" aria-label="Next track">▶▶</button>
+              <div class="player-progress" id="player-progress" role="slider" aria-label="Seek">
+                <div class="player-progress-fill" id="player-progress-fill"></div>
+              </div>
+              <div class="player-time" id="player-time-current">0:00</div>
+            </div>
+            <div class="player-volume">
+              <span style="font-size:10px;">🔊</span>
+              <input type="range" id="player-volume-slider" min="0" max="100" value="60" aria-label="Volume">
+            </div>
+            <div class="player-playlist" id="player-playlist"></div>
+          </div>
+        </div>
       </div>
 
       <div class="box">
@@ -536,5 +239,6 @@
 
 </div>
 
+<script src="script.js"></script>
 </body>
 </html>
