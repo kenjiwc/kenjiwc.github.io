@@ -11,7 +11,7 @@ const playlist = [
 ];
 
 let currentTrack = 0;
-let isPlaying = true;
+let isPlaying = false;
 
 const audio = new Audio();
 audio.volume = 0.6;
