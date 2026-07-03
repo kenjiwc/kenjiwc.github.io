@@ -232,10 +232,14 @@ table.infotable td.k{
   display:flex;
   align-items:center;
   justify-content:center;
-  color:#2d4f7c;
-  font-weight:bold;
-  font-size:20px;
+  overflow:hidden;
   margin-bottom:3px;
+}
+.top8-friend .avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 .top8-friend a{ text-decoration:none; font-weight:bold; }
 
