@@ -5,13 +5,13 @@
 // the `src` field for each track below. File names are just examples.
 
 const playlist = [
-  { title: "Summer Nights",      artist: "The Faded Polaroids", src: "assets/track1.mp3" },
-  { title: "Dial Tone Romance",  artist: "Static Youth",        src: "assets/track2.mp3" },
-  { title: "Neon & Nostalgia",   artist: "Casette Future",      src: "assets/track3.mp3" },
+  { title: "Lady Brown",         artist: "Nujabes feat. Cise Star", src: "tracklist/track1.mp3" },
+  { title: "Salad Days",         artist: "Mac DeMarco",             src: "tracklist/track2.mp3" },
+  { title: "Crying Lightning",   artist: "Arctic Monkeys",          src: "tracklist/track3.mp3" },
 ];
 
 let currentTrack = 0;
-let isPlaying = false;
+let isPlaying = true;
 
 const audio = new Audio();
 audio.volume = 0.6;
